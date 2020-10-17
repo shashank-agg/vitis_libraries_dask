@@ -85,13 +85,13 @@ ifneq (,$(wildcard $(XILINX_VITIS)/bin/ldlibpath.sh))
 endif
 
 # sw_emu, hw_emu, hw
-TARGET ?= sw_emu
+TARGET ?= hw
 ifeq ($(filter $(TARGET),sw_emu hw_emu hw),)
   $(error TARGET is not sw_emu, hw_emu or hw)
 endif
 
 # Target device
-DEVICE ?= xilinx_u50_xdma_201920_1
+DEVICE ?= xilinx_u50_gen3x16_xdma_201920_3
 
 ifneq (,$(wildcard $(DEVICE)))
   # Use DEVICE as a file path
@@ -396,6 +396,15 @@ endif
 run: host xclbin $(EMU_CONFIG)
 	$(RUN_ENV); \
 	$(EXE_FILE) $(HOST_ARGS)
+
+
+run-python: lib $(EMU_CONFIG)
+	$(RUN_ENV);	\
+	python3 xfZlibWrapper.py
+
+dask-worker: lib $(EMU_CONFIG)
+	$(RUN_ENV);	\
+	dask-worker tcp://131.180.106.138:8786 --nthreads 1
 
 check: run
 
