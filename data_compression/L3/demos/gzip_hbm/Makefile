@@ -404,7 +404,7 @@ run-python: lib $(EMU_CONFIG)
 
 dask-worker: lib $(EMU_CONFIG)
 	$(RUN_ENV);	\
-	dask-worker tcp://131.180.106.138:8786 --nthreads 1
+	dask-worker tcp://131.180.106.138:8786 --nthreads 1 --memory-limit 0
 
 check: run
 

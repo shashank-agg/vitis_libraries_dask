@@ -5,7 +5,6 @@ import os
 class xfZlibWrapper:
     
     def __init__(self, xclbin_path):
-        print("####", xclbin_path)
         self.lib = cdll.LoadLibrary('build/libz.so')
         xfZlib_constructor_wrapper = self.lib.xfZlib_constructor_wrapper
         xfZlib_constructor_wrapper.argtypes = [c_char_p, c_uint8, c_uint8, c_uint8, c_uint8, c_uint8]
@@ -21,7 +20,6 @@ class xfZlibWrapper:
         )       
 
     def compress_file(self, inFilePath, outFilePath):
-        print("$$$$$", inFilePath, outFilePath)
         inFilePath = inFilePath.encode('utf-8')
         outFilePath = outFilePath.encode('utf-8')
         compress_file_wrapper = self.lib.compress_file_wrapper
