@@ -4,8 +4,8 @@ import os
 
 class xfZlibWrapper:
     
-    def __init__(self, xclbin_path):
-        self.lib = cdll.LoadLibrary('build/libz.so')
+    def __init__(self, xclbin_path, libzso_path = "build/libz.so"):
+        self.lib = cdll.LoadLibrary(libzso_path)
         xfZlib_constructor_wrapper = self.lib.xfZlib_constructor_wrapper
         xfZlib_constructor_wrapper.argtypes = [c_char_p, c_uint8, c_uint8, c_uint8, c_uint8, c_uint8]
         xfZlib_constructor_wrapper.restype = c_void_p

@@ -79,6 +79,7 @@ constexpr auto c_clOutOfResource = -5;
 constexpr auto c_clinvalidbin = -42;
 constexpr auto c_clinvalidvalue = -30;
 
+#define VERBOSE 1
 #ifdef VERBOSE
 #define ZOCL_CHECK(error, call, eflag, expected)                                    \
     call;                                                                           \
